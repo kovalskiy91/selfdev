@@ -1,16 +1,14 @@
-plugins {
-    id 'java'
-}
+subprojects {
+    plugins {
+        id 'java'
+    }
 
-group 'kovalskiy91'
-version '1.0-SNAPSHOT'
+    group 'kovalskiy91.selfdev'
+    version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+    sourceCompatibility = 1.8
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-
+    repositories {
+        mavenCentral()
+    }
 }
