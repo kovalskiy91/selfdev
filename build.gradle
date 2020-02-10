@@ -1,7 +1,5 @@
 subprojects {
-    plugins {
-        id 'java'
-    }
+    apply plugin: 'java'
 
     group 'kovalskiy91.selfdev'
     version '1.0-SNAPSHOT'
