@@ -1,0 +1,6 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        ejb:
+          interceptor: kovalskiy91.selfdev.jpa.QueryInterceptor
