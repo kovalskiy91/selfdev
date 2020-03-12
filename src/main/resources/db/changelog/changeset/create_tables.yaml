@@ -1,0 +1,114 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_tables
+      tag: create_tables
+      author: andrey_kovalskiy
+      changes:
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: nvarchar
+              - column:
+                  name: surname
+                  type: nvarchar
+              - column:
+                  name: salary
+                  type: int
+              - column:
+                  name: hourly_wage
+                  type: int
+        - createSequence:
+            sequenceName: employee-id-seq
+            startValue: 100
+            incrementBy: 1
+        - createTable:
+            tableName: publication
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: title
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+        - createSequence:
+            sequenceName: publication-id-seq
+            startValue: 100
+            incrementBy: 1
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: pub_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: publisher
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: pub_id
+            baseTableName: book
+            constraintName: fk_book_publication
+            referencedColumnNames: id
+            referencedTableName: publication
+        - createTable:
+            tableName: post
+            columns:
+              - column:
+                  name: pub_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: posted_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+        - addForeignKeyConstraint:
+            baseColumnNames: pub_id
+            baseTableName: post
+            constraintName: fk_post_publication
+            referencedColumnNames: id
+            referencedTableName: publication
