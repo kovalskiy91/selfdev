@@ -1,0 +1,53 @@
+databaseChangeLog:
+  - changeSet:
+      id: create_tables
+      tag: create_tables
+      author: andrey_kovalskiy
+      changes:
+        - createTable:
+            tableName: employee
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: type
+                  type: nvarchar
+                  constraints:
+                    nullable: false
+              - column:
+                  name: name
+                  type: nvarchar
+              - column:
+                  name: surname
+                  type: nvarchar
+        - createSequence:
+            sequenceName: employee-id-seq
+            startValue: 100
+            incrementBy: 1
+        - createTable:
+            tableName: ft_employee
+            columns:
+              - column:
+                  name: employee_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: salary
+                  type: int
+        - addForeignKeyConstraint:
+            baseColumnNames: employee_id
+            baseTableName: ft_employee
+            constraintName: fk_ft_employee_employee
+            referencedColumnNames: id
+            referencedTableName: employee
